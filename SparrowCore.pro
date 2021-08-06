@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     fastdownload.cpp \
+    jsonparser.cpp \
     sparrowcore.cpp
 
 HEADERS += \
     SparrowCore_global.h \
     fastdownload.h \
+    jsonparser.h \
     sparrowcore.h
 
 # Default rules for deployment.

@@ -4,10 +4,12 @@
 #include <QtAlgorithms>
 #include <QQueue>
 #include <QString>
+#include <QtNetwork/QNetworkAccessManager>
 
 typedef qint16 fastDownloadStatus;
 typedef qint8 fastDownloadQueueId;
 typedef quint32 filePoint;
+static QNetworkAccessManager networkManager;
 
 typedef struct fastDonwloadInfo {
     QString savePath, remotePath;
@@ -25,7 +27,7 @@ public:
     void downloadLoop();
     fastDownloadStatus startDownload(fastDownloadQueueId Id, filePoint startPos, filePoint endPos);
 
-    QQueue<fastDonwloadInfo> downloadQueue;
+    static QQueue<fastDonwloadInfo> downloadQueue;
 };
 
 #endif // FASTDOWNLOAD_H
