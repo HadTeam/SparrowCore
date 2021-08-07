@@ -38,7 +38,7 @@ public:
     QString hash;
     qint8 size;
     fileType type;
-
+    fileInfo();
     fileInfo(QUrl& fileURL, QString& filePath, QString& hash, qint8& size, fileType& type);
     fastDownloadInfo getDownloadInfo();
 };

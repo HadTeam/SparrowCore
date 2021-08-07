@@ -9,7 +9,6 @@
 typedef qint16 fastDownloadStatus;
 typedef qint8 fastDownloadQueueId;
 typedef quint32 filePoint;
-static QNetworkAccessManager networkManager;
 
 typedef struct fastDownloadInfo {
     QString savePath, remotePath;

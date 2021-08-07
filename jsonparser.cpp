@@ -33,6 +33,10 @@ MinecraftVersion::MinecraftVersion(QString& version, versionType& type, QUrl& ve
            this->versionJson_URL = versionJson_URL;
 }
 
+fileInfo::fileInfo() {
+
+}
+
 fileInfo::fileInfo(QUrl& fileURL, QString& filePath, QString& hash, qint8& size, fileType& type){
     this->fileURL = fileURL;
     this->filePath = filePath;
