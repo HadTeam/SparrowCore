@@ -1,6 +1,6 @@
 #include "jsonparser.h"
 
-QVector<MinecraftVersion> jsonParser::getMinecraftVersions(QJsonDocument document)
+QVector<MinecraftVersion> jsonParser::parseMinecraftVersions(QJsonDocument document)
 {
         QVector<MinecraftVersion> result;
         for (auto i : document.object().value("versions").toArray()) {
@@ -26,9 +26,27 @@ QVector<MinecraftVersion> jsonParser::getMinecraftVersions(QJsonDocument documen
         return result;
 }
 
-MinecraftVersion::MinecraftVersion(QString version, versionType type, QUrl versionJson_URL)
+MinecraftVersion::MinecraftVersion(QString& version, versionType& type, QUrl& versionJson_URL)
 {
            this->version = version;
            this->type = type;
            this->versionJson_URL = versionJson_URL;
+}
+
+fileInfo::fileInfo(QUrl& fileURL, QString& filePath, QString& hash, qint8& size, fileType& type){
+    this->fileURL = fileURL;
+    this->filePath = filePath;
+    this->hash = hash;
+    this->size = size;
+    this->type = type;
+}
+
+
+versionParseResult::versionParseResult(fileInfo& assetIndex, QString& assetVersion, fileInfo& clientJar, QQueue<fileInfo>& libs, QString& mainClass, enum versionType& versionType){
+    this->assetIndex = assetIndex;
+    this->assetVersion = assetVersion;
+    this->clientJar = clientJar;
+    this->libs = libs;
+    this->mainClass = mainClass;
+    this->versionType = versionType;
 }

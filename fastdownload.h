@@ -11,13 +11,13 @@ typedef qint8 fastDownloadQueueId;
 typedef quint32 filePoint;
 static QNetworkAccessManager networkManager;
 
-typedef struct fastDonwloadInfo {
+typedef struct fastDownloadInfo {
     QString savePath, remotePath;
     fastDownloadStatus status;
-    fastDonwloadInfo() {
+    fastDownloadInfo() {
         this->status=0;
     }
-} fastDonwloadInfo;
+} fastDownloadInfo;
 
 class fastDownload
 {
@@ -27,7 +27,7 @@ public:
     void downloadLoop();
     fastDownloadStatus startDownload(fastDownloadQueueId Id, filePoint startPos, filePoint endPos);
 
-    static QQueue<fastDonwloadInfo> downloadQueue;
+    static QQueue<fastDownloadInfo> downloadQueue;
 };
 
 #endif // FASTDOWNLOAD_H
