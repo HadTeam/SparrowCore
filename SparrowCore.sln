@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SparrowCore", "SparrowCore.vcxproj", "{65C5D29D-9BCC-3F09-8E62-B42322388002}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testWindow", "testWindow\testWindow.vcxproj", "{8C05309B-9B82-3129-90F2-7A035FE1A568}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -15,6 +17,10 @@ Global
 		{65C5D29D-9BCC-3F09-8E62-B42322388002}.Debug|x64.Build.0 = Debug|x64
 		{65C5D29D-9BCC-3F09-8E62-B42322388002}.Release|x64.ActiveCfg = Release|x64
 		{65C5D29D-9BCC-3F09-8E62-B42322388002}.Release|x64.Build.0 = Release|x64
+		{8C05309B-9B82-3129-90F2-7A035FE1A568}.Debug|x64.ActiveCfg = Debug|x64
+		{8C05309B-9B82-3129-90F2-7A035FE1A568}.Debug|x64.Build.0 = Debug|x64
+		{8C05309B-9B82-3129-90F2-7A035FE1A568}.Release|x64.ActiveCfg = Release|x64
+		{8C05309B-9B82-3129-90F2-7A035FE1A568}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
