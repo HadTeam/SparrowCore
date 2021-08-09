@@ -5,13 +5,13 @@ const QMap<QString,versionType> jsonParser::strToVersionType={
 };
 
 
-libraryFile jsonParser::parseLibraryFile(QJsonObject libraryItem)
+libraryFile jsonParser::parseLibraryFile(const QJsonObject & libraryItem)
 {
     QString temp = ".mincraft/libraries/"+libraryItem["path"].toString();
     return libraryFile(libraryItem["url"].toString(), temp.left(temp.lastIndexOf('/')), libraryItem["sha1"].toString(), libraryItem["size"].toInt());
 }
 
-nativesLibrary jsonParser::parseNativesLibrary(QJsonObject nativesLibraryItem){
+nativesLibrary jsonParser::parseNativesLibrary(const QJsonObject & nativesLibraryItem){
     nativesLibrary result;
     result.nativesLibrary_Windows = parseLibraryFile(nativesLibraryItem["natives-windows"].toObject());
     result.nativesLibrary_Linux = parseLibraryFile(nativesLibraryItem["natives-linux"].toObject());
@@ -19,7 +19,7 @@ nativesLibrary jsonParser::parseNativesLibrary(QJsonObject nativesLibraryItem){
     return result;
 }
 
-QVector<minecraftVersion> jsonParser::parseMinecraftVersions(QJsonDocument document)
+QVector<minecraftVersion> jsonParser::parseMinecraftVersions(const QJsonDocument & document)
 {
     QVector<minecraftVersion> result;
     for (QJsonValueRef i : document["versions"].toArray()) {
@@ -33,7 +33,7 @@ QVector<minecraftVersion> jsonParser::parseMinecraftVersions(QJsonDocument docum
     return result;
 }
 
-versionParseResult jsonParser::parseVersionJson(QJsonDocument versionInfo)
+versionParseResult jsonParser::parseVersionJson(const QJsonDocument & versionInfo)
 {
     versionParseResult result;
     QString assetVersion = versionInfo["assets"].toString();
@@ -52,7 +52,7 @@ versionParseResult jsonParser::parseVersionJson(QJsonDocument versionInfo)
     return versionParseResult{assetIndex, assetVersion, clientJar, libs, mainClass, versionType};
 }
 
-nativesLibraryFile::nativesLibraryFile(libraryFile, nativesLibrary e){
+nativesLibraryFile::nativesLibraryFile(const libraryFile &, const nativesLibrary & e){
     libraryFile(a);
     this->classifiers = e;
 }
@@ -72,3 +72,4 @@ versionParseResult::versionParseResult(const fileInfo &assetIndex, const QString
 {
 
 }
+

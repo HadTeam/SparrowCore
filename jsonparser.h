@@ -15,7 +15,7 @@ typedef struct minecraftVersion{
     QString version;
     versionType type;
     QUrl versionJsonUrl;
-    minecraftVersion(void);
+    minecraftVersion(void){}
     minecraftVersion(const QString & version, const versionType & type, const QUrl & versionJsonUrl);
 } minecraftVersion;
 typedef struct fileInfo{
@@ -24,7 +24,7 @@ typedef struct fileInfo{
     QString hash;
     qint8 size;
     fastDownloadInfo getDownloadInfo();
-    fileInfo(void);
+    fileInfo(void){}
     fileInfo(const QUrl & fileUrl, const QString & filePath, const QString & hash, const qint8 & size);
 } fileInfo;
 typedef struct libraryFile:fileInfo{
@@ -34,12 +34,12 @@ typedef struct nativesLibrary{
     libraryFile nativesLibrary_Windows;
     libraryFile nativesLibrary_Linux;
     libraryFile nativesLibrary_macOS;
-    nativesLibrary(void);
+    nativesLibrary(void){}
 } nativesLibrary;
 typedef struct nativesLibraryFile : libraryFile{
     nativesLibrary classifiers;
-    nativesLibraryFile(void);
-    nativesLibraryFile(libraryFile, nativesLibrary e);
+    nativesLibraryFile(void){}
+    nativesLibraryFile(const libraryFile &, const nativesLibrary & e);
 } nativesLibraryFile;
 typedef struct versionParseResult{
     fileInfo assetIndex;
@@ -48,7 +48,7 @@ typedef struct versionParseResult{
     QVector<fileInfo> libs;
     QString mainClass;
     versionType versionType;
-    versionParseResult(void);
+    versionParseResult(void){}
     versionParseResult(const fileInfo & assetIndex, const QString & assetVersion, const fileInfo & clientJar, const QVector<fileInfo> & libs, const QString & mainClass, const enum versionType & versionType);
 } versionParseResult;
 
@@ -56,13 +56,13 @@ class jsonParser
 {
 private:
     static const QMap<QString,versionType> strToVersionType; // Fastly convent version type from QString to versionType
-    static libraryFile parseLibraryFile(QJsonObject libraryItem);
-    static nativesLibrary parseNativesLibrary(QJsonObject nativesLibraryItem);
+    static libraryFile parseLibraryFile(const QJsonObject & libraryItem);
+    static nativesLibrary parseNativesLibrary(const QJsonObject & nativesLibraryItem);
 
 public:
-    jsonParser();
-    static QVector<minecraftVersion> parseMinecraftVersions(QJsonDocument versionManifest);
-    static versionParseResult parseVersionJson(QJsonDocument versionInfo);
+    jsonParser(){}
+    static QVector<minecraftVersion> parseMinecraftVersions(const QJsonDocument & versionManifest);
+    static versionParseResult parseVersionJson(const QJsonDocument & versionInfo);
 };
 
 

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SparrowCore", "SparrowCore.vcxproj", "{65C5D29D-9BCC-3F09-8E62-B42322388002}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65C5D29D-9BCC-3F09-8E62-B42322388002}.Debug|x64.ActiveCfg = Debug|x64
+		{65C5D29D-9BCC-3F09-8E62-B42322388002}.Debug|x64.Build.0 = Debug|x64
+		{65C5D29D-9BCC-3F09-8E62-B42322388002}.Release|x64.ActiveCfg = Release|x64
+		{65C5D29D-9BCC-3F09-8E62-B42322388002}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3B1B75C-C8FD-4A9C-B95D-68B5B9931FE3}
+	EndGlobalSection
+EndGlobal

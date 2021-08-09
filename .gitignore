@@ -44,21 +44,6 @@ Thumbs.db
 # Vim temporary files
 .*.swp
 
-# Visual Studio generated files
-*.ib_pdb_index
-*.idb
-*.ilk
-*.pdb
-*.sln
-*.suo
-*.vcproj
-*vcproj.*.*.user
-*.ncb
-*.sdf
-*.opensdf
-*.vcxproj
-*vcxproj.*
-
 # MinGW generated files
 *.Debug
 *.Release
@@ -71,6 +56,8 @@ Thumbs.db
 *.dll
 *.exe
 
-/.vs
-
 build-*
+/.vs/SparrowCore/v16
+/debug
+/release
+/x64/Debug
