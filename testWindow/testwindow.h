@@ -2,6 +2,7 @@
 #define TESTWINDOW_H
 
 #include <QMainWindow>
+#include "../sparrowcore.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class testWindow; }

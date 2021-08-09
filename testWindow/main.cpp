@@ -1,5 +1,4 @@
 #include "testwindow.h"
-#include "../sparrowcore.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
