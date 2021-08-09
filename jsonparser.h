@@ -7,60 +7,40 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <fastdownload.h>
+#include "fastdownload.h"
 
-enum versionType {
-    RELEASE,
-    SNAPSHOT,
-    OLD_ALPHA,
-    OLD_BETA
-};
+typedef enum versionType { RELEASE,SNAPSHOT,OLD_ALPHA,OLD_BETA } versionType;
+typedef enum fileType { LIBRARY,LIBRARY_NATIVES,CLIENT_JAR } fileType;
 
-class MinecraftVersion{
-public:
+typedef struct minecraftVersion{
     QString version;
     versionType type;
-    QUrl versionJson_URL;
-
-    MinecraftVersion(QString& version, versionType& type, QUrl& versionJson_URL);
-};
-
-enum fileType{
-    LIBRARY,
-    LIBRARY_NATIVES,
-    CLIENT_JAR
-};
-
-class fileInfo{
-public:
+    QUrl versionJsonUrl;
+} minecraftVersion;
+typedef struct fileInfo{
     QUrl fileURL;
     QString filePath;
     QString hash;
     qint8 size;
     fileType type;
-    fileInfo();
-    fileInfo(QUrl& fileURL, QString& filePath, QString& hash, qint8& size, fileType& type);
     fastDownloadInfo getDownloadInfo();
-};
-
-class versionParseResult{
-public:
-    //param params;
+} fileInfo;
+typedef struct versionParseResult{
     fileInfo assetIndex;
     QString assetVersion;
     fileInfo clientJar;
     QQueue<fileInfo> libs;
     QString mainClass;
     versionType versionType;
-
-    versionParseResult(fileInfo& assetIndex, QString& assetVersion, fileInfo& clientJar, QQueue<fileInfo>& libs, QString& mainClass, enum versionType& versionType);
-};
+} versionParseResult;
 
 class jsonParser
 {
+private:
+    static const QMap<QString,versionType> strToVersionType; // Fastly convent version type from QString to versionType
 public:
     jsonParser();
-    static QVector<MinecraftVersion> parseMinecraftVersions(QJsonDocument versionManifest);
+    static QVector<minecraftVersion> parseMinecraftVersions(QJsonDocument document);
     static versionParseResult parseVersionJson(QJsonDocument versionInfo);
 };
 
