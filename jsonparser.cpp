@@ -1,5 +1,9 @@
 #include "jsonparser.h"
 
+using namespace Sparrow;
+using namespace Sparrow::Init;
+using namespace Sparrow::Init::JsonParser;
+
 const QMap<QString,versionType> jsonParser::strToVersionType={
     {"RELEASE",RELEASE},{"SNAPSHOT",SNAPSHOT},{"OLD_ALPHA",OLD_ALPHA},{"OLD_BETA",OLD_BETA}
 };

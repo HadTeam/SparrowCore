@@ -61,3 +61,5 @@ build-*
 /debug
 /release
 /x64/Debug
+/testWindow/debug/testWindow.tlog
+/testWindow/debug
