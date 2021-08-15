@@ -2,6 +2,9 @@
 #include <QString>
 #include <QUrl>
 #include <QDir>
+#include "utils.h"
+
+using namespace Sparrow::utils;
 
 namespace Sparrow {
     typedef enum versionType { RELEASE, SNAPSHOT, OLD_ALPHA, OLD_BETA } versionType;
@@ -9,17 +12,60 @@ namespace Sparrow {
     typedef struct minecraftVersion {
         QString version;
         versionType type;
-        QUrl versionJsonUrl;
+        fileInfo assetIndex;
+        QString assetVersion;
+        fileInfo clientJar;
+        QVector<fileInfo> libs;
+        QString mainClass;
         minecraftVersion(void) {}
-        minecraftVersion(const QString& version, const versionType& type, const QUrl& versionJsonUrl);
+        minecraftVersion(const QString& version, 
+            const enum versionType& type, 
+            const fileInfo& assetIndex,
+            const QString& assetVersion,
+            const fileInfo& clientJar,
+            const QVector<fileInfo>& libs,
+            const QString& mainClass);
+        bool operator<(const minecraftVersion& b);
+        bool operator<(const QString& b);
+        bool operator==(const minecraftVersion& b);
+        bool operator==(const QString& b);
+        bool operator>(const minecraftVersion& b);
+        bool operator>(const QString& b);
+        bool operator<=(const minecraftVersion& b);
+        bool operator<=(const QString& b);
+        bool operator>=(const minecraftVersion& b);
+        bool operator>=(const QString& b);
     } minecraftVersion;
+
+    class MinecraftDirectory {
+    public:
+        QDir rootDir;
+        QDir versionsDir;
+        QDir savesDir;
+        QDir resourcepacksDir;
+        QDir librariesDir;
+        QDir crash_reportsDir;
+        QDir assetsDir;
+        MinecraftDirectory(void){}
+        MinecraftDirectory(const QString& rootDir);
+        QVector<Minecraft> getMinecrafts();
+    };
 
 	class Minecraft
 	{
     public:
         minecraftVersion version;
-        QDir rootPath;  //TODO 封装为类，提供方法获取各子路径、获取各版本信息
-        QDir path;  //TODO 封装为类，提供方法获取版本信息
-        Minecraft(){}
+        MinecraftDirectory root;
+        QDir path;
+        QFile clientJarFile;
+        QFile jsonFile;
+        Minecraft(void){}
+        Minecraft(
+            const minecraftVersion& version,
+            const MinecraftDirectory& root,
+            const QDir& path,
+            const QFile& clientJarFile,
+            const QFile& jsonFile);
+        Minecraft(const QDir& dir);
 	};
 }

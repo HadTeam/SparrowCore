@@ -23,23 +23,23 @@ nativesLibrary jsonParser::parseNativesLibrary(const QJsonObject & nativesLibrar
     return result;
 }
 
-QVector<minecraftVersion> jsonParser::parseMinecraftVersions(const QJsonDocument & document)
+QHash<QString, ParserResult_minecraftVersion> jsonParser::parseMinecraftVersions(const QJsonDocument& versionManifest)
 {
-    QVector<minecraftVersion> result;
-    for (QJsonValueRef i : document["versions"].toArray()) {
+    QHash<QString, ParserResult_minecraftVersion> result;
+    for (QJsonValueRef i : versionManifest["versions"].toArray()) {
         QJsonObject obj=i.toObject();
-        QString objVersion = obj["id"].toString();
-        QString objVersionType = obj["type"].toString();
-        versionType _versionType;
-        _versionType=strToVersionType[objVersionType];
-        result.push_front(minecraftVersion{objVersion, _versionType, QUrl(obj["url"].toString())});
+        QString Version = obj["id"].toString();
+        versionType versionType=strToVersionType[obj["type"].toString()];
+        QUrl url = QUrl(obj["url"].toString());
+        QString time = obj["time"].toString(), releaseTime = obj["releaseTime"].toString();
+        result.insert(Version, ParserResult_minecraftVersion(Version, versionType, url, time, releaseTime));
     }
     return result;
 }
 
-versionParseResult jsonParser::parseVersionJson(const QJsonDocument & versionInfo)
+minecraftVersion jsonParser::parseMinecraftVersion(const QJsonDocument & versionInfo)
 {
-    versionParseResult result;
+    QString version = versionInfo["id"].toString();
     QString assetVersion = versionInfo["assets"].toString();
     versionType versionType = strToVersionType[versionInfo["type"].toString()];
     QString mainClass = versionInfo["mainClass"].toString();
@@ -53,7 +53,49 @@ versionParseResult jsonParser::parseVersionJson(const QJsonDocument & versionInf
             libs.push_back(nativesLibraryFile(parseLibraryFile(i.toObject()["artifact"].toObject()),parseNativesLibrary(i.toObject()["classifiers"].toObject())));
         }
     }
-    return versionParseResult{assetIndex, assetVersion, clientJar, libs, mainClass, versionType};
+    return minecraftVersion(version, versionType, assetIndex, assetVersion, clientJar, libs, mainClass);
+}
+
+Sparrow::Minecraft Sparrow::Init::JsonParser::jsonParser::parseMinecraft(const QDir& dir)
+{
+    for (auto i : dir.entryList()) {
+        if (i.endsWith(".json")) {
+            minecraftVersion version = parseMinecraftVersion(QJsonDocument::fromJson(QFile(dir.dirName() + i).readAll()));
+            MinecraftDirectory root = MinecraftDirectory(dir.dirName().left(dir.dirName().lastIndexOf("/versions") - 1));
+            QString path = dir.dirName();
+            QFile clientJar, jsonFile = QFile(dir.dirName() + i);
+            for (auto k : dir.entryList()) {
+                if (k.endsWith(".jar")) {
+                    clientJar = QFile(dir.dirName() + k);
+                }
+            }
+            return Minecraft(version, root, path, clientJar, jsonFile);
+        }
+    }
+}
+
+Sparrow::Minecraft::Minecraft(const QDir& dir) {
+    for (auto i : dir.entryList()) {
+        if (i.endsWith(".json")) {
+            this->version = jsonParser::parseMinecraftVersion(QJsonDocument::fromJson(QFile(dir.dirName() + i).readAll()));
+            this->root = MinecraftDirectory(dir.dirName().left(dir.dirName().lastIndexOf("/versions") - 1));
+            this->path = dir.dirName();
+            this->jsonFile = QFile(dir.dirName() + i);
+            for (auto k : dir.entryList()) {
+                if (k.endsWith(".jar")) {
+                    this->clientJarFile = QFile(dir.dirName() + k);
+                }
+            }
+        }
+    }
+}
+
+QHash<QString, QString> Sparrow::Init::JsonParser::jsonParser::parseLatestVersion(const QJsonDocument& versionManifest)
+{
+    QJsonObject i = versionManifest["latest"].toObject();
+    QHash<QString, QString> result;
+    result.insert("release", i["release"].toString());
+    result.insert("snapshot", i["snapshot"].toString());
 }
 
 nativesLibraryFile::nativesLibraryFile(const libraryFile &, const nativesLibrary & e){
@@ -61,19 +103,11 @@ nativesLibraryFile::nativesLibraryFile(const libraryFile &, const nativesLibrary
     this->classifiers = e;
 }
 
-
-minecraftVersion::minecraftVersion(const QString &version, const versionType &type, const QUrl &versionJsonUrl) : version(version), type(type), versionJsonUrl(versionJsonUrl)
-{
-
-}
-
 fileInfo::fileInfo(const QUrl &fileUrl, const QString &filePath, const QString &hash, const qint8 &size) : fileUrl(fileUrl), filePath(filePath), hash(hash), size(size)
 {
 
 }
 
-versionParseResult::versionParseResult(const fileInfo &assetIndex, const QString &assetVersion, const fileInfo &clientJar, const QVector<fileInfo> &libs, const QString &mainClass, const enum versionType &versionType) : assetIndex(assetIndex), assetVersion(assetVersion), clientJar(clientJar), libs(libs), mainClass(mainClass), versionType(versionType)
+Sparrow::Init::JsonParser::ParserResult_minecraftVersion::ParserResult_minecraftVersion(const QString& id, const versionType& type, const QUrl& url, const QString& time, const QString& releaseTime) : id(id), type(type), url(url), time(time), releaseTime(releaseTime)
 {
-
 }
-

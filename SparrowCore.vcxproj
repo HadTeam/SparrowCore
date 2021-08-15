@@ -140,6 +140,7 @@
     <ClCompile Include="jsonparser.cpp" />
     <ClCompile Include="minecraft.cpp" />
     <ClCompile Include="sparrowcore.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="minecraft.h" />
@@ -147,6 +148,7 @@
     <ClInclude Include="fastdownload.h" />
     <ClInclude Include="jsonparser.h" />
     <ClInclude Include="sparrowcore.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
