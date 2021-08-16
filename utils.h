@@ -1,6 +1,7 @@
 #pragma once
 #include <QDir>
 #include "fastdownload.h"
+#include <Windows.h>
 
 
 namespace Sparrow {
@@ -31,5 +32,7 @@ namespace Sparrow {
 			nativesLibraryFile(void) {}
 			nativesLibraryFile(const libraryFile&, const nativesLibrary& e);
 		} nativesLibraryFile;
+
+		static std::string getSystemName();
 	}
 }

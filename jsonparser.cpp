@@ -98,16 +98,6 @@ QHash<QString, QString> Sparrow::Init::JsonParser::jsonParser::parseLatestVersio
     result.insert("snapshot", i["snapshot"].toString());
 }
 
-nativesLibraryFile::nativesLibraryFile(const libraryFile &, const nativesLibrary & e){
-    libraryFile(a);
-    this->classifiers = e;
-}
-
-fileInfo::fileInfo(const QUrl &fileUrl, const QString &filePath, const QString &hash, const qint8 &size) : fileUrl(fileUrl), filePath(filePath), hash(hash), size(size)
-{
-
-}
-
 Sparrow::Init::JsonParser::ParserResult_minecraftVersion::ParserResult_minecraftVersion(const QString& id, const versionType& type, const QUrl& url, const QString& time, const QString& releaseTime) : id(id), type(type), url(url), time(time), releaseTime(releaseTime)
 {
 }
