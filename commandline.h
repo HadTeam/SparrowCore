@@ -4,29 +4,29 @@
 
 namespace Sparrow {
 	namespace launch {
+		class processArgument {
+		private:
+			QString key;
+			QString value;
+		public:
+			QString toString();
+			processArgument(void){}
+			processArgument(QString key, QString value);
+		};
+		class jvmArgument {
+			QString key;
+			QString value;
+		public:
+			jvmArgument(void) {}
+			QString toString();
+			jvmArgument(QString key, QString value);
+		};
 		class CommandLine {
-			CommandLine(void){}
+			CommandLine(void) {}
 		private:
 			QString javaPath;
 			QVector<processArgument> processArguments;
 			QVector<jvmArgument> jvmArguments;
-		};
-		class processArgument {
-			processArgument(void) {}
-		private:
-			QString key;
-			QString value;
-		public:
-			QString toString();
-			processArgument(QString key, QString value);
-		};
-		class jvmArgument {
-			jvmArgument(void) {}
-			QString key;
-			QString value;
-		public:
-			QString toString();
-			jvmArgument(QString key, QString value);
 		};
 		class CommandLineCreator
 		{
@@ -37,6 +37,7 @@ namespace Sparrow {
 			static jvmArgument useG1();
 			static jvmArgument useAdaptiveSizePolicy();
 			static jvmArgument useOmitStackTraceInFastThrow();
+			static const jvmArgument constJvmArgs[];
 		};
 	}
 }

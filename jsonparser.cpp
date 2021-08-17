@@ -63,13 +63,11 @@ Sparrow::Minecraft Sparrow::Init::JsonParser::jsonParser::parseMinecraft(const Q
             minecraftVersion version = parseMinecraftVersion(QJsonDocument::fromJson(QFile(dir.dirName() + i).readAll()));
             MinecraftDirectory root = MinecraftDirectory(dir.dirName().left(dir.dirName().lastIndexOf("/versions") - 1));
             QString path = dir.dirName();
-            QFile clientJar, jsonFile = QFile(dir.dirName() + i);
             for (auto k : dir.entryList()) {
                 if (k.endsWith(".jar")) {
-                    clientJar = QFile(dir.dirName() + k);
+                    return Minecraft(version, root, path, dir.dirName() + k, dir.dirName() + i);
                 }
             }
-            return Minecraft(version, root, path, clientJar, jsonFile);
         }
     }
 }
@@ -80,10 +78,10 @@ Sparrow::Minecraft::Minecraft(const QDir& dir) {
             this->version = jsonParser::parseMinecraftVersion(QJsonDocument::fromJson(QFile(dir.dirName() + i).readAll()));
             this->root = MinecraftDirectory(dir.dirName().left(dir.dirName().lastIndexOf("/versions") - 1));
             this->path = dir.dirName();
-            this->jsonFile = QFile(dir.dirName() + i);
+            this->jsonFile = dir.dirName() + i;
             for (auto k : dir.entryList()) {
                 if (k.endsWith(".jar")) {
-                    this->clientJarFile = QFile(dir.dirName() + k);
+                    this->clientJarFile = dir.dirName() + k;
                 }
             }
         }
@@ -96,6 +94,7 @@ QHash<QString, QString> Sparrow::Init::JsonParser::jsonParser::parseLatestVersio
     QHash<QString, QString> result;
     result.insert("release", i["release"].toString());
     result.insert("snapshot", i["snapshot"].toString());
+    return result;
 }
 
 Sparrow::Init::JsonParser::ParserResult_minecraftVersion::ParserResult_minecraftVersion(const QString& id, const versionType& type, const QUrl& url, const QString& time, const QString& releaseTime) : id(id), type(type), url(url), time(time), releaseTime(releaseTime)

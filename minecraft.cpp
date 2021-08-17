@@ -67,15 +67,6 @@ Sparrow::MinecraftDirectory::MinecraftDirectory(const QString& rootDir)
 	this->versionsDir = QDir(rootDir + "/versionsDir");
 }
 
-QVector<Minecraft> Sparrow::MinecraftDirectory::getMinecrafts()
-{
-	QVector<Minecraft> result;
-	for (auto i : this->versionsDir.entryList()) {
-		result.push_back(Minecraft(this->versionsDir.dirName() + "/" + i));
-	}
-	return result;
-}
-
-Sparrow::Minecraft::Minecraft(const minecraftVersion& version, const MinecraftDirectory& root, const QDir& path, const QFile& clientJarFile, const QFile& jsonFile) : version(version), root(root), path(path), clientJarFile(clientJarFile), jsonFile(jsonFile)
+Sparrow::Minecraft::Minecraft(const minecraftVersion& version, const MinecraftDirectory& root, const QDir& path, const QString& clientJarFile, const QString& jsonFile) : version(version), root(root), path(path), clientJarFile(clientJarFile), jsonFile(jsonFile)
 {
 }

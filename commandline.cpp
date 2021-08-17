@@ -13,9 +13,9 @@ Sparrow::launch::processArgument::processArgument(QString key, QString value) : 
 QString Sparrow::launch::jvmArgument::toString()
 {
 	if (!key.startsWith("-D"))
-		return key + "=" + value;
+		return key + value;
 	else
-		return "-D" + key + "=" + value;
+		return key + "=" + value;
 }
 
 Sparrow::launch::jvmArgument::jvmArgument(QString key, QString value) : key(key), value(value)

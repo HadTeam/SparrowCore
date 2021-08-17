@@ -3,7 +3,7 @@ QT -= gui
 TEMPLATE = lib
 DEFINES += SPARROWCORE_LIBRARY
 
-CONFIG += c++11
+CONFIG += c++17
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -19,13 +19,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     fastdownload.cpp \
     jsonparser.cpp \
-    sparrowcore.cpp
+    sparrowcore.cpp \
+    commandline.cpp \
+    utils.cpp \
+    minecraft.cpp \
 
 HEADERS += \
     SparrowCore_global.h \
     fastdownload.h \
     jsonparser.h \
-    sparrowcore.h
+    sparrowcore.h \
+    minecraft.h \
+    utils.h \
+    commandline.h
 
 # Default rules for deployment.
 unix {

@@ -48,7 +48,6 @@ namespace Sparrow {
         QDir assetsDir;
         MinecraftDirectory(void){}
         MinecraftDirectory(const QString& rootDir);
-        QVector<Minecraft> getMinecrafts();
     };
 
 	class Minecraft
@@ -57,15 +56,15 @@ namespace Sparrow {
         minecraftVersion version;
         MinecraftDirectory root;
         QDir path;
-        QFile clientJarFile;
-        QFile jsonFile;
+        QString clientJarFile;
+        QString jsonFile;
         Minecraft(void){}
         Minecraft(
             const minecraftVersion& version,
             const MinecraftDirectory& root,
             const QDir& path,
-            const QFile& clientJarFile,
-            const QFile& jsonFile);
+            const QString& clientJarFile,
+            const QString& jsonFile);
         Minecraft(const QDir& dir);
 	};
 }

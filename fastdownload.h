@@ -30,7 +30,6 @@ namespace Sparrow {
 
 			static QQueue<fastDownloadInfo> downloadQueue;
 		};
-
-#endif // FASTDOWNLOAD_H
 	}
 }
+#endif // FASTDOWNLOAD_H
