@@ -1,48 +1,57 @@
 #include "commandline.h"
 using namespace Sparrow::launch;
+using namespace Sparrow::utils;
 
-QString Sparrow::launch::processArgument::toString()
+QString processArgument::toString()
 {
 	return "--" + key + " " + value;
 }
 
-Sparrow::launch::processArgument::processArgument(QString key, QString value) : key(key), value(value)
+processArgument::processArgument(QString key, QString value) : key(key), value(value)
 {
 }
 
-QString Sparrow::launch::jvmArgument::toString()
+QString jvmArgument::toString()
 {
-	if (!key.startsWith("-D"))
+	if (key.startsWith("-X"))
 		return key + value;
-	else
+	else if (key.startsWith("-XX"))
+		return key + ":" + value;
+	else //"-D"
 		return key + "=" + value;
 }
 
-Sparrow::launch::jvmArgument::jvmArgument(QString key, QString value) : key(key), value(value)
+jvmArgument::jvmArgument(QString key, QString value) : key(key), value(value)
 {
 }
 
-jvmArgument Sparrow::launch::CommandLineCreator::maxHeapSize(const qint8& size)
+jvmArgument CommandLineCreator::maxHeapSize(const qint8& size)
 {
 	return jvmArgument("-Xmx", size + "m");
 }
 
-jvmArgument Sparrow::launch::CommandLineCreator::newHeapSize(const qint8& size)
+jvmArgument CommandLineCreator::newHeapSize(const qint8& size)
 {
 	return jvmArgument("-Xmn",size+"m");
 }
 
-jvmArgument Sparrow::launch::CommandLineCreator::useG1()
+jvmArgument CommandLineCreator::useG1()
 {
-	return jvmArgument("-XX:", "+UseG1GC");
+	return jvmArgument("-XX", "+UseG1GC");
 }
 
-jvmArgument Sparrow::launch::CommandLineCreator::useAdaptiveSizePolicy()
+jvmArgument CommandLineCreator::useAdaptiveSizePolicy()
 {
-	return jvmArgument("-XX:", "-UseAdaptiveSizePolicy");
+	return jvmArgument("-XX", "-UseAdaptiveSizePolicy");
 }
 
-jvmArgument Sparrow::launch::CommandLineCreator::useOmitStackTraceInFastThrow()
+jvmArgument CommandLineCreator::useOmitStackTraceInFastThrow()
 {
-	return jvmArgument("-XX:", "-OmitStackTraceInFastThrow");
+	return jvmArgument("-XX", "-OmitStackTraceInFastThrow");
 }
+
+const jvmArgument CommandLineCreator::constJvmArgs[] = {
+	jvmArgument("-XX","HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump"),
+	jvmArgument("-Dos.name", QString::fromStdString(getSystemName())),
+	jvmArgument("-Dos.version", QString::fromStdString(getSystemVersion()))
+};

@@ -34,5 +34,7 @@ namespace Sparrow {
 		} nativesLibraryFile;
 
 		static std::string getSystemName();
+
+		static std::string getSystemVersion();
 	}
 }

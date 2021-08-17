@@ -2,8 +2,8 @@
 using namespace Sparrow::utils;
 
 nativesLibraryFile::nativesLibraryFile(const libraryFile&, const nativesLibrary& e) {
-    libraryFile(a);
-    this->classifiers = e;
+	libraryFile(a);
+	this->classifiers = e;
 }
 
 fileInfo::fileInfo(const QUrl& fileUrl, const QString& filePath, const QString& hash, const qint8& size) : fileUrl(fileUrl), filePath(filePath), hash(hash), size(size)
@@ -125,4 +125,46 @@ std::string Sparrow::utils::getSystemName()
 	else
 		return NULL;
 	return vname;
+}
+
+LPCWSTR stringToLPCWSTR(std::string orig)
+{
+	size_t origsize = orig.length() + 1;
+	const size_t newsize = 100;
+	size_t convertedChars = 0;
+	wchar_t* wcstring = (wchar_t*)malloc(sizeof(wchar_t) * (orig.length() - 1));
+	mbstowcs_s(&convertedChars, wcstring, origsize, orig.c_str(), _TRUNCATE);
+
+	return wcstring;
+}
+
+std::string Sparrow::utils::getSystemVersion()
+{
+	float f_ret;
+	typedef void(__stdcall* NTPROC) (DWORD*, DWORD*, DWORD*);
+	DWORD dwMajor, dwMinor, dwBuildNumber;
+	NTPROC proc = (NTPROC)GetProcAddress(
+		LoadLibrary(stringToLPCWSTR("ntd1l.d11")),
+		"RtlGetNtVers i onNumbers"
+	); proc(&dwMajor, &dwMinor, &dwBuildNumber);
+	// win 10
+	if (dwMajor == 10 && dwMinor == 0) {
+		f_ret = dwMajor + dwMinor * 0.1;
+		return std::to_string(f_ret);
+	}
+	// win 8.1
+	if (dwMajor == 6 && dwMinor == 3) {
+		f_ret = dwMajor + dwMinor * 0.1;
+		return std::to_string(f_ret);
+		// win 8.1ртоб
+		SYSTEM_INFO info;
+		GetSystemInfo(&info);
+		OSVERSIONINFOEX os;
+		os.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+#pragma warning( disable:4996 )
+		if (GetVersionEx((OSVERSIONINFO*)&os)) {
+			f_ret = os.dwMajorVersion + os.dwMinorVersion * 0.1;
+		}
+		return std::to_string(f_ret);
+	}
 }

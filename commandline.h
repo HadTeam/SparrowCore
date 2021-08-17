@@ -1,6 +1,7 @@
 #pragma once
 #include <QString>
 #include <QVector>
+#include "utils.h"
 
 namespace Sparrow {
 	namespace launch {
