@@ -1,6 +1,6 @@
-#include "testwindow.h"
-#include "ui_testwindow.h"
-#include "../sparrowcore.h"
+#include "testWindow.h"
+#include "UI_TestWindow.h"
+#include "../SparrowCore.h"
 
 testWindow::testWindow(QWidget *parent)
     : QMainWindow(parent)

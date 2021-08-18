@@ -2,8 +2,8 @@
 #define SPARROWCORE_H
 
 #include "SparrowCore_global.h"
-#include "fastdownload.h"
-#include "jsonparser.h"
+#include "fastDownload.h"
+#include "jsonParser.h"
 
 class SPARROWCORE_EXPORT SparrowCore
 {

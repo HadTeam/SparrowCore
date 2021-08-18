@@ -1,4 +1,4 @@
-#include "minecraft.h"
+#include "Minecraft.h"
 using namespace Sparrow;
 using namespace Sparrow::utils;
 

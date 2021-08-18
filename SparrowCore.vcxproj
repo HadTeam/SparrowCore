@@ -136,22 +136,22 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="commandline.cpp" />
-    <ClCompile Include="fastdownload.cpp" />
-    <ClCompile Include="jsonparser.cpp" />
-    <ClCompile Include="launcher.cpp" />
-    <ClCompile Include="minecraft.cpp" />
-    <ClCompile Include="sparrowcore.cpp" />
+    <ClCompile Include="CommandLine.cpp" />
+    <ClCompile Include="fastDownload.cpp" />
+    <ClCompile Include="jsonParser.cpp" />
+    <ClCompile Include="Launcher.cpp" />
+    <ClCompile Include="Minecraft.cpp" />
+    <ClCompile Include="SparrowCore.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="commandline.h" />
-    <ClInclude Include="launcher.h" />
-    <ClInclude Include="minecraft.h" />
+    <ClInclude Include="CommandLine.h" />
+    <ClInclude Include="Launcher.h" />
+    <ClInclude Include="Minecraft.h" />
     <ClInclude Include="SparrowCore_global.h" />
-    <ClInclude Include="fastdownload.h" />
-    <ClInclude Include="jsonparser.h" />
-    <ClInclude Include="sparrowcore.h" />
+    <ClInclude Include="fastDownload.h" />
+    <ClInclude Include="jsonParser.h" />
+    <ClInclude Include="SparrowCore.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>

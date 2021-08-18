@@ -1,4 +1,4 @@
-#include "fastdownload.h"
+#include "fastDownload.h"
 using namespace Sparrow::utils;
 
 fastDownload::fastDownload()

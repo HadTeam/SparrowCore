@@ -40,12 +40,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="testwindow.cpp">
+    <ClCompile Include="testWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="testwindow.h">
+    <CustomBuild Include="testWindow.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -62,13 +62,15 @@
     <ClCompile Include="release\moc_testwindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClInclude Include="ui_testwindow.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="testwindow.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="UI_TestWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

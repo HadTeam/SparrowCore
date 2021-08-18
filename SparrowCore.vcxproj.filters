@@ -27,25 +27,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="fastdownload.cpp">
+    <ClCompile Include="fastDownload.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="jsonparser.cpp">
+    <ClCompile Include="jsonParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sparrowcore.cpp">
+    <ClCompile Include="SparrowCore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="minecraft.cpp">
+    <ClCompile Include="Minecraft.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="commandline.cpp">
+    <ClCompile Include="CommandLine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="launcher.cpp">
+    <ClCompile Include="Launcher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,25 +53,25 @@
     <ClInclude Include="SparrowCore_global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fastdownload.h">
+    <ClInclude Include="fastDownload.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="jsonparser.h">
+    <ClInclude Include="jsonParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sparrowcore.h">
+    <ClInclude Include="SparrowCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="minecraft.h">
+    <ClInclude Include="Minecraft.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="commandline.h">
+    <ClInclude Include="CommandLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="launcher.h">
+    <ClInclude Include="Launcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,4 @@
-#include "sparrowcore.h"
+#include "SparrowCore.h"
 
 SparrowCore::SparrowCore()
 {

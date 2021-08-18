@@ -138,10 +138,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="testwindow.cpp" />
+    <ClCompile Include="testWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="testwindow.h">
+    <CustomBuild Include="testWindow.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">testwindow.h;release\moc_predefs.h;D:\Qt\Qt5.13.2\5.13.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Qt\Qt5.13.2\5.13.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DNDEBUG -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/Program/QT/SparrowCore/SparrowCore/testWindow/release/moc_predefs.h -ID:/Qt/Qt5.13.2/5.13.2/msvc2017_64/mkspecs/win32-msvc -ID:/Program/QT/SparrowCore/SparrowCore/testWindow -ID:/Qt/Qt5.13.2/5.13.2/msvc2017_64/include -ID:/Qt/Qt5.13.2/5.13.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.13.2/5.13.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.13.2/5.13.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.13.2/5.13.2/msvc2017_64/include/QtCore -ID:/Qt/Qt5.13.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Qt/Qt5.13.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Qt5.13.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/Qt5.13.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Qt/Qt5.13.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Qt/Qt5.13.2/Tools/mingw730_64/x86_64-w64-mingw32/include testwindow.h -o release\moc_testwindow.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC testwindow.h</Message>
@@ -175,7 +175,7 @@
     <ClCompile Include="release\moc_testwindow.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClInclude Include="ui_testwindow.h" />
+    <ClInclude Include="UI_TestWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="testwindow.ui">
