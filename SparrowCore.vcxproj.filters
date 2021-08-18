@@ -45,6 +45,9 @@
     <ClCompile Include="commandline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="launcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SparrowCore_global.h">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="commandline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="launcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

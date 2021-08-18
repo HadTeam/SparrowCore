@@ -139,12 +139,14 @@
     <ClCompile Include="commandline.cpp" />
     <ClCompile Include="fastdownload.cpp" />
     <ClCompile Include="jsonparser.cpp" />
+    <ClCompile Include="launcher.cpp" />
     <ClCompile Include="minecraft.cpp" />
     <ClCompile Include="sparrowcore.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="commandline.h" />
+    <ClInclude Include="launcher.h" />
     <ClInclude Include="minecraft.h" />
     <ClInclude Include="SparrowCore_global.h" />
     <ClInclude Include="fastdownload.h" />
