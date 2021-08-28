@@ -32,8 +32,8 @@ namespace Sparrow::utils {
 		nativesLibraryFile(const libraryFile&, const nativesLibrary& e);
 	} nativesLibraryFile;
 
-	static std::string getSystemName();
+	std::string getSystemName();
 
-	static std::string getSystemVersion();
+	std::string getSystemVersion();
 
 }
