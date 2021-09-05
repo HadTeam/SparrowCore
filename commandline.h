@@ -1,10 +1,11 @@
 #pragma once
 #include <QString>
 #include <QVector>
+#include "SparrowCore_global.h"
 #include "utils.h"
 
 namespace Sparrow::launch {
-	class processArgument {
+	class __declspec(dllexport) processArgument {
 	private:
 		QString key;
 		QString value;
@@ -13,7 +14,7 @@ namespace Sparrow::launch {
 		processArgument(void) {}
 		processArgument(QString key, QString value);
 	};
-	class jvmArgument {
+	class __declspec(dllexport) jvmArgument {
 		QString key;
 		QString value;
 	public:
@@ -21,7 +22,7 @@ namespace Sparrow::launch {
 		QString toString();
 		jvmArgument(QString key, QString value);
 	};
-	class CommandLine {
+	class __declspec(dllexport) CommandLine {
 		CommandLine(void) {}
 		CommandLine(const QString& javaPath, const QVector<jvmArgument>& jvmArguments);	//只生成包含常量的和自定义的JVM参数的CommandLine，ProcessArguments在LaunchArgument中添加
 	private:
@@ -29,7 +30,7 @@ namespace Sparrow::launch {
 		QVector<processArgument> processArguments;
 		QVector<jvmArgument> jvmArguments;
 	};
-	class CommandLineCreator
+	class __declspec(dllexport) CommandLineCreator
 	{
 	public:
 		CommandLineCreator(void) {}

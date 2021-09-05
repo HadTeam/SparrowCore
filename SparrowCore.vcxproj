@@ -149,7 +149,6 @@
     <ClInclude Include="CommandLine.h" />
     <ClInclude Include="Launcher.h" />
     <ClInclude Include="Minecraft.h" />
-    <ClInclude Include="SparrowCoreDll.h" />
     <ClInclude Include="SparrowCore_global.h" />
     <ClInclude Include="fastDownload.h" />
     <ClInclude Include="jsonParser.h" />

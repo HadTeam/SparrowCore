@@ -14,7 +14,7 @@
 using namespace Sparrow::utils;
 
 namespace Sparrow::Init::JsonParser {
-	class ParserResult_minecraftVersion {
+	class __declspec(dllexport) ParserResult_minecraftVersion {
 	public:
 		QString id;
 		versionType type;
@@ -30,7 +30,7 @@ namespace Sparrow::Init::JsonParser {
 			const QString& releaseTime);
 	};
 
-	class jsonParser
+	class __declspec(dllexport) jsonParser
 	{
 	private:
 		static const QMap<QString, versionType> strToVersionType; // Fastly convent version type from QString to versionType
@@ -40,7 +40,7 @@ namespace Sparrow::Init::JsonParser {
 	public:
 		jsonParser() {}
 		static QHash<QString, ParserResult_minecraftVersion> parseMinecraftVersions(const QJsonDocument& versionManifest);
-		static Sparrow::minecraftVersion parseMinecraftVersion(const QJsonDocument& versionInfo);
+		static Sparrow::MinecraftVersion parseMinecraftVersion(const QJsonDocument& versionInfo);
 		static Sparrow::Minecraft parseMinecraft(const QDir& dir);
 		static QHash<QString, QString> parseLatestVersion(const QJsonDocument& versionManifest);
 	};

@@ -2,10 +2,11 @@
 #include <QDir>
 #include "fastdownload.h"
 #include <Windows.h>
-
+#include "SparrowCore_global.h"
 
 namespace Sparrow::utils {
-	typedef struct fileInfo {
+	class __declspec(dllexport) fileInfo {
+	public:
 		QUrl fileUrl;
 		QString filePath;
 		QString hash;
@@ -13,27 +14,28 @@ namespace Sparrow::utils {
 		fastDownloadInfo getDownloadInfo();
 		fileInfo(void) {}
 		fileInfo(const QUrl& fileUrl, const QString& filePath, const QString& hash, const qint8& size);
-	} fileInfo;
+	};
 
-	typedef struct libraryFile :fileInfo {
+	class __declspec(dllexport) libraryFile : public fileInfo {
 		using fileInfo::fileInfo;
-	} libraryFile;
+	};
 
-	typedef struct nativesLibrary {
+	class __declspec(dllexport) nativesLibrary {
+	public:
 		libraryFile nativesLibrary_Windows;
 		libraryFile nativesLibrary_Linux;
 		libraryFile nativesLibrary_macOS;
-		nativesLibrary(void) {}
-	} nativesLibrary;
+		nativesLibrary(void);
+	};
 
-	typedef struct nativesLibraryFile : libraryFile {
+	class __declspec(dllexport) nativesLibraryFile : public libraryFile {
+	public:
 		nativesLibrary classifiers;
-		nativesLibraryFile(void) {}
+		nativesLibraryFile(void);
 		nativesLibraryFile(const libraryFile&, const nativesLibrary& e);
-	} nativesLibraryFile;
+	};
 
 	std::string getSystemName();
 
 	std::string getSystemVersion();
-
 }

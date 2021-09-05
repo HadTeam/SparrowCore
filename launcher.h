@@ -4,12 +4,12 @@
 #include "minecraft.h"
 
 namespace Sparrow::launch {
-	class LaunchArgument {
+	class __declspec(dllexport) LaunchArgument {
 		CommandLine CommandLine_jvmArgs;
 		Minecraft Minecraft;
 		//TODO User User;
 	};
-	class Launcher
+	class __declspec(dllexport) Launcher
 	{
 		QProcess launch(LaunchArgument arg);
 	};

@@ -10,10 +10,4 @@
 #  define SPARROWCORE_EXPORT Q_DECL_IMPORT
 #endif
 
-namespace test {
-	SPARROWCORE_EXPORT std::string inline getSystemVersion(void) {
-		return Sparrow::utils::getSystemVersion();
-	}
-}
-
 #endif // SPARROWCORE_GLOBAL_H

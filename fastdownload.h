@@ -12,15 +12,15 @@ namespace Sparrow {
 		typedef qint8 fastDownloadQueueId;
 		typedef quint32 filePoint;
 
-		typedef struct fastDownloadInfo {
+		class __declspec(dllexport) fastDownloadInfo {
 			QString savePath, remotePath;
 			fastDownloadStatus status;
 			fastDownloadInfo() {
 				this->status = 0;
 			}
-		} fastDownloadInfo;
+		};
 
-		class fastDownload
+		class __declspec(dllexport) fastDownload
 		{
 		public:
 			fastDownload();

@@ -1,6 +1,10 @@
 #include "utils.h"
 using namespace Sparrow::utils;
 
+Sparrow::utils::nativesLibraryFile::nativesLibraryFile(void)
+{
+}
+
 nativesLibraryFile::nativesLibraryFile(const libraryFile&, const nativesLibrary& e) {
 	libraryFile(a);
 	this->classifiers = e;
@@ -167,4 +171,8 @@ std::string Sparrow::utils::getSystemVersion()
 		}
 		return std::to_string(f_ret);
 	}
+}
+
+Sparrow::utils::nativesLibrary::nativesLibrary(void)
+{
 }
