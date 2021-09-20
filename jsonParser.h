@@ -8,7 +8,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QHash>
-#include "minecraft.h"
+#include "Minecraft.h"
 #include "utils.h"
 
 using namespace Sparrow::utils;

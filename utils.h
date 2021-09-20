@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QDir>
-#include "fastdownload.h"
+#include "fastDownload.h"
 #include <Windows.h>
 
 
