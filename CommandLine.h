@@ -3,6 +3,7 @@
 #include <QString>
 #include <QVector>
 #include "utils.h"
+#include "Minecraft.h"
 
 namespace Sparrow::launch {
     class processArgument {

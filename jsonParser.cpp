@@ -5,10 +5,10 @@ using namespace Sparrow::Init;
 using namespace Sparrow::Init::JsonParser;
 
 const QMap<QString, versionType> jsonParser::strToVersionType = {
-        {"RELEASE",   RELEASE},
-        {"SNAPSHOT",  SNAPSHOT},
-        {"OLD_ALPHA", OLD_ALPHA},
-        {"OLD_BETA",  OLD_BETA}
+        {"RELEASE",   Sparrow::versionType::RELEASE},
+        {"SNAPSHOT",  Sparrow::versionType::SNAPSHOT},
+        {"OLD_ALPHA", Sparrow::versionType::OLD_ALPHA},
+        {"OLD_BETA",  Sparrow::versionType::OLD_BETA}
 };
 
 
@@ -39,7 +39,7 @@ QHash<QString, ParserResult_minecraftVersion> jsonParser::parseMinecraftVersions
     return result;
 }
 
-minecraftVersion jsonParser::parseMinecraftVersion(const QJsonDocument &versionInfo) {
+MinecraftVersion jsonParser::parseMinecraftVersion(const QJsonDocument &versionInfo) {
     QString version = versionInfo["id"].toString();
     QString assetVersion = versionInfo["assets"].toString();
     versionType versionType = strToVersionType[versionInfo["type"].toString()];
@@ -65,7 +65,7 @@ minecraftVersion jsonParser::parseMinecraftVersion(const QJsonDocument &versionI
 Sparrow::Minecraft Sparrow::Init::JsonParser::jsonParser::parseMinecraft(const QDir &dir) {
     for (auto i: dir.entryList()) {
         if (i.endsWith(".json")) {
-            minecraftVersion version = parseMinecraftVersion(
+            MinecraftVersion version = parseMinecraftVersion(
                     QJsonDocument::fromJson(QFile(dir.dirName() + i).readAll()));
             MinecraftDirectory root = MinecraftDirectory(
                     dir.dirName().left(dir.dirName().lastIndexOf("/versions") - 1));
