@@ -17,21 +17,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    fastdownload.cpp \
-    jsonparser.cpp \
-    sparrowcore.cpp \
-    commandline.cpp \
+    fastDownload.cpp \
+    jsonParser.cpp \
+    SparrowCore.cpp \
+    CommandLine.cpp \
     utils.cpp \
-    minecraft.cpp \
+    Minecraft.cpp \
+    Launcher.cpp
 
 HEADERS += \
     SparrowCore_global.h \
-    fastdownload.h \
-    jsonparser.h \
-    sparrowcore.h \
-    minecraft.h \
+    fastDownload.h \
+    jsonParser.h \
+    SparrowCore.h \
+    Minecraft.h \
     utils.h \
-    commandline.h
+    CommandLine.h \
+    Launcher.h
 
 # Default rules for deployment.
 unix {
