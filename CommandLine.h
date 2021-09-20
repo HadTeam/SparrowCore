@@ -99,15 +99,15 @@ namespace Sparrow::launch {
         processArgument accessToken;
         processArgument userType;
         processArgument versionType;
-        jvmArgument *additionalJvmArgument;
-        processArgument *additionalProcessArgument;
+        jvmArgument addtionalJvmArgument[];
+        processArgument addtionalProcessArgument[];
     public:
         LaunchArgument(const jvmArgument &osName, const jvmArgument &osVersion, const jvmArgument &javaLibraryPath,
                        const jvmArgument &cp, const jvmArgument &log4JConfigurationFile, const QString &mainClass,
                        const processArgument &username, const processArgument &version, const processArgument &gameDir,
                        const processArgument &assetsDir, const processArgument &assetIndex, const processArgument &uuid,
                        const processArgument &accessToken, const processArgument &userType,
-                       const processArgument &versionType, jvmArgument *additionalJvmArgument,
-                       processArgument *additionalProcessArgument);
+                       const processArgument &versionType, jvmArgument *addtionalJvmArgument,
+                       processArgument *addtionalProcessArgument);
     };
 }

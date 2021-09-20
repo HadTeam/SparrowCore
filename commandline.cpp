@@ -117,3 +117,25 @@ Sparrow::launch::CommandLine::CommandLine(const QString& javaPath, const QVector
 		this->jvmArguments.push_front(i);
 	}
 }
+
+LaunchArgument::LaunchArgument(const jvmArgument &osName, const jvmArgument &osVersion,
+                               const jvmArgument &javaLibraryPath, const jvmArgument &cp,
+                               const jvmArgument &log4JConfigurationFile, const QString &mainClass,
+                               const processArgument &username, const processArgument &version,
+                               const processArgument &gameDir, const processArgument &assetsDir,
+                               const processArgument &assetIndex, const processArgument &uuid,
+                               const processArgument &accessToken, const processArgument &userType,
+                               const processArgument &versionType, jvmArgument *additionalJvmArgument,
+                               processArgument *additionalProcessArgument) : osName(osName), osVersion(osVersion),
+                                                                             javaLibraryPath(javaLibraryPath), cp(cp),
+                                                                             log4jConfigurationFile(
+                                                                                    log4JConfigurationFile),
+                                                                             mainClass(mainClass), username(username),
+                                                                             version(version), gameDir(gameDir),
+                                                                             assetsDir(assetsDir),
+                                                                             assetIndex(assetIndex), uuid(uuid),
+                                                                             accessToken(accessToken),
+                                                                             userType(userType),
+                                                                             versionType(versionType),
+                                                                             additionalJvmArgument(additionalJvmArgument),
+                                                                             additionalProcessArgument(additionalProcessArgument) {}
