@@ -7,29 +7,32 @@
 #include <QtNetwork/QNetworkAccessManager>
 
 namespace Sparrow {
-	namespace utils {
-		typedef qint16 fastDownloadStatus;
-		typedef qint8 fastDownloadQueueId;
-		typedef quint32 filePoint;
+    namespace utils {
+        typedef qint16 fastDownloadStatus;
+        typedef qint8 fastDownloadQueueId;
+        typedef quint32 filePoint;
 
-		typedef struct fastDownloadInfo {
-			QString savePath, remotePath;
-			fastDownloadStatus status;
-			fastDownloadInfo() {
-				this->status = 0;
-			}
-		} fastDownloadInfo;
+        typedef struct fastDownloadInfo {
+            QString savePath, remotePath;
+            fastDownloadStatus status;
 
-		class fastDownload
-		{
-		public:
-			fastDownload();
-			~fastDownload();
-			void downloadLoop();
-			fastDownloadStatus startDownload(fastDownloadQueueId Id, filePoint startPos, filePoint endPos);
+            fastDownloadInfo() {
+                this->status = 0;
+            }
+        } fastDownloadInfo;
 
-			static QQueue<fastDownloadInfo> downloadQueue;
-		};
-	}
+        class fastDownload {
+        public:
+            fastDownload();
+
+            ~fastDownload();
+
+            void downloadLoop();
+
+            fastDownloadStatus startDownload(fastDownloadQueueId Id, filePoint startPos, filePoint endPos);
+
+            static QQueue<fastDownloadInfo> downloadQueue;
+        };
+    }
 }
 #endif // FASTDOWNLOAD_H

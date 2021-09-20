@@ -64,3 +64,4 @@ build-*
 /testWindow/debug/testWindow.tlog
 /testWindow/debug
 /.vs/SparrowCore/v17
+/cmake-build-debug

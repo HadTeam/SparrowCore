@@ -1,170 +1,161 @@
 #include "utils.h"
+
 using namespace Sparrow::utils;
 
-nativesLibraryFile::nativesLibraryFile(const libraryFile&, const nativesLibrary& e) {
-	libraryFile(a);
-	this->classifiers = e;
+nativesLibraryFile::nativesLibraryFile(const libraryFile &, const nativesLibrary &e) {
+    libraryFile(a);
+    this->classifiers = e;
 }
 
-fileInfo::fileInfo(const QUrl& fileUrl, const QString& filePath, const QString& hash, const qint8& size) : fileUrl(fileUrl), filePath(filePath), hash(hash), size(size)
-{
-
-}
-
-LPWSTR ConvertCharToLPWSTR(const char* szString)
-
-{
-
-	int dwLen = strlen(szString) + 1;
-
-	int nwLen = MultiByteToWideChar(CP_ACP, 0, szString, dwLen, NULL, 0);//Ëã³öºÏÊÊµÄ³¤¶È
-
-	LPWSTR lpszPath = new WCHAR[dwLen];
-
-	MultiByteToWideChar(CP_ACP, 0, szString, dwLen, lpszPath, nwLen);
-
-	return lpszPath;
+fileInfo::fileInfo(const QUrl &fileUrl, const QString &filePath, const QString &hash, const qint8 &size) : fileUrl(
+        fileUrl), filePath(filePath), hash(hash), size(size) {
 
 }
 
-std::string Sparrow::utils::getSystemName()
-{
-	std::string vname;
-	//ÏÈÅÐ¶ÏÊÇ·ñÎªwin8.1»òwin10  
-	typedef void(__stdcall* NTPROC)(DWORD*, DWORD*, DWORD*);
-	HINSTANCE hinst = LoadLibrary(ConvertCharToLPWSTR("ntdll.dll"));
-	DWORD dwMajor, dwMinor, dwBuildNumber;
-	NTPROC proc = (NTPROC)GetProcAddress(hinst, "RtlGetNtVersionNumbers");
-	proc(&dwMajor, &dwMinor, &dwBuildNumber);
-	if (dwMajor == 6 && dwMinor == 3)   //win 8.1  
-	{
-		vname = "Windows 8.1";
-		return vname;
-	}
-	if (dwMajor == 10 && dwMinor == 0)  //win 10  
-	{
-		vname = "Windows 10";
-		return vname;
-	}
-	//ÅÐ¶Ïwin8.1ÒÔÏÂµÄ°æ±¾  
-	SYSTEM_INFO info;                //ÓÃSYSTEM_INFO½á¹¹ÅÐ¶Ï64Î»AMD´¦ÀíÆ÷    
-	GetSystemInfo(&info);            //µ÷ÓÃGetSystemInfoº¯ÊýÌî³ä½á¹¹    
-	OSVERSIONINFOEX os;
-	os.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
-#pragma warning(disable:4996)  
-	if (GetVersionEx((OSVERSIONINFO*)&os))
-	{
-		//ÏÂÃæ¸ù¾Ý°æ±¾ÐÅÏ¢ÅÐ¶Ï²Ù×÷ÏµÍ³Ãû³Æ    
-		switch (os.dwMajorVersion)
-		{                        //ÅÐ¶ÏÖ÷°æ±¾ºÅ    
-		case 4:
-			switch (os.dwMinorVersion)
-			{                //ÅÐ¶Ï´Î°æ±¾ºÅ    
-			case 0:
-				if (os.dwPlatformId == VER_PLATFORM_WIN32_NT)
-					vname = "Windows NT 4.0";  //1996Äê7ÔÂ·¢²¼    
-				else if (os.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
-					vname = "Windows 95";
-				break;
-			case 10:
-				vname = "Windows 98";
-				break;
-			case 90:
-				vname = "Windows Me";
-				break;
-			}
-			break;
-		case 5:
-			switch (os.dwMinorVersion)
-			{               //ÔÙ±È½ÏdwMinorVersionµÄÖµ    
-			case 0:
-				vname = "Windows 2000";    //1999Äê12ÔÂ·¢²¼    
-				break;
-			case 1:
-				vname = "Windows XP";      //2001Äê8ÔÂ·¢²¼    
-				break;
-			case 2:
-				if (os.wProductType == VER_NT_WORKSTATION &&
-					info.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
-					vname = "Windows XP Professional x64 Edition";
-				else if (GetSystemMetrics(SM_SERVERR2) == 0)
-					vname = "Windows Server 2003";   //2003Äê3ÔÂ·¢²¼    
-				else if (GetSystemMetrics(SM_SERVERR2) != 0)
-					vname = "Windows Server 2003 R2";
-				break;
-			}
-			break;
-		case 6:
-			switch (os.dwMinorVersion)
-			{
-			case 0:
-				if (os.wProductType == VER_NT_WORKSTATION)
-					vname = "Windows Vista";
-				else
-					vname = "Windows Server 2008";   //·þÎñÆ÷°æ±¾    
-				break;
-			case 1:
-				if (os.wProductType == VER_NT_WORKSTATION)
-					vname = "Windows 7";
-				else
-					vname = "Windows Server 2008 R2";
-				break;
-			case 2:
-				if (os.wProductType == VER_NT_WORKSTATION)
-					vname = "Windows 8";
-				else
-					vname = "Windows Server 2012";
-				break;
-			}
-			break;
-		default:
-			return NULL;
-		}
-		return vname;
-	}
-	else
-		return NULL;
-	return vname;
+LPWSTR ConvertCharToLPWSTR(const char *szString) {
+
+    int dwLen = strlen(szString) + 1;
+
+    int nwLen = MultiByteToWideChar(CP_ACP, 0, szString, dwLen, NULL, 0);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÊµÄ³ï¿½ï¿½ï¿½
+
+    LPWSTR lpszPath = new WCHAR[dwLen];
+
+    MultiByteToWideChar(CP_ACP, 0, szString, dwLen, lpszPath, nwLen);
+
+    return lpszPath;
+
 }
 
-LPCWSTR stringToLPCWSTR(std::string orig)
-{
-	size_t origsize = orig.length() + 1;
-	const size_t newsize = 100;
-	size_t convertedChars = 0;
-	wchar_t* wcstring = (wchar_t*)malloc(sizeof(wchar_t) * (orig.length() - 1));
-	mbstowcs_s(&convertedChars, wcstring, origsize, orig.c_str(), _TRUNCATE);
-
-	return wcstring;
+std::string Sparrow::utils::getSystemName() {
+    std::string vname;
+    //ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½Ç·ï¿½Îªwin8.1ï¿½ï¿½win10
+    typedef void(__stdcall *NTPROC)(DWORD *, DWORD *, DWORD *);
+    HINSTANCE hinst = LoadLibrary(ConvertCharToLPWSTR("ntdll.dll"));
+    DWORD dwMajor, dwMinor, dwBuildNumber;
+    NTPROC proc = (NTPROC) GetProcAddress(hinst, "RtlGetNtVersionNumbers");
+    proc(&dwMajor, &dwMinor, &dwBuildNumber);
+    if (dwMajor == 6 && dwMinor == 3)   //win 8.1
+    {
+        vname = "Windows 8.1";
+        return vname;
+    }
+    if (dwMajor == 10 && dwMinor == 0)  //win 10
+    {
+        vname = "Windows 10";
+        return vname;
+    }
+    //ï¿½Ð¶ï¿½win8.1ï¿½ï¿½ï¿½ÂµÄ°æ±¾
+    SYSTEM_INFO info;                //ï¿½ï¿½SYSTEM_INFOï¿½á¹¹ï¿½Ð¶ï¿½64Î»AMDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    GetSystemInfo(&info);            //ï¿½ï¿½ï¿½ï¿½GetSystemInfoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹¹
+    OSVERSIONINFOEX os;
+    os.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+#pragma warning(disable:4996)
+    if (GetVersionEx((OSVERSIONINFO *) &os)) {
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°æ±¾ï¿½ï¿½Ï¢ï¿½Ð¶Ï²ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½
+        switch (os.dwMajorVersion) {                        //ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½æ±¾ï¿½ï¿½
+            case 4:
+                switch (os.dwMinorVersion) {                //ï¿½Ð¶Ï´Î°æ±¾ï¿½ï¿½
+                    case 0:
+                        if (os.dwPlatformId == VER_PLATFORM_WIN32_NT)
+                            vname = "Windows NT 4.0";  //1996ï¿½ï¿½7ï¿½Â·ï¿½ï¿½ï¿½
+                        else if (os.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
+                            vname = "Windows 95";
+                        break;
+                    case 10:
+                        vname = "Windows 98";
+                        break;
+                    case 90:
+                        vname = "Windows Me";
+                        break;
+                }
+                break;
+            case 5:
+                switch (os.dwMinorVersion) {               //ï¿½Ù±È½ï¿½dwMinorVersionï¿½ï¿½Öµ
+                    case 0:
+                        vname = "Windows 2000";    //1999ï¿½ï¿½12ï¿½Â·ï¿½ï¿½ï¿½
+                        break;
+                    case 1:
+                        vname = "Windows XP";      //2001ï¿½ï¿½8ï¿½Â·ï¿½ï¿½ï¿½
+                        break;
+                    case 2:
+                        if (os.wProductType == VER_NT_WORKSTATION &&
+                            info.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
+                            vname = "Windows XP Professional x64 Edition";
+                        else if (GetSystemMetrics(SM_SERVERR2) == 0)
+                            vname = "Windows Server 2003";   //2003ï¿½ï¿½3ï¿½Â·ï¿½ï¿½ï¿½
+                        else if (GetSystemMetrics(SM_SERVERR2) != 0)
+                            vname = "Windows Server 2003 R2";
+                        break;
+                }
+                break;
+            case 6:
+                switch (os.dwMinorVersion) {
+                    case 0:
+                        if (os.wProductType == VER_NT_WORKSTATION)
+                            vname = "Windows Vista";
+                        else
+                            vname = "Windows Server 2008";   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ±¾
+                        break;
+                    case 1:
+                        if (os.wProductType == VER_NT_WORKSTATION)
+                            vname = "Windows 7";
+                        else
+                            vname = "Windows Server 2008 R2";
+                        break;
+                    case 2:
+                        if (os.wProductType == VER_NT_WORKSTATION)
+                            vname = "Windows 8";
+                        else
+                            vname = "Windows Server 2012";
+                        break;
+                }
+                break;
+            default:
+                return NULL;
+        }
+        return vname;
+    } else
+        return NULL;
+    return vname;
 }
 
-std::string Sparrow::utils::getSystemVersion()
-{
-	float f_ret;
-	typedef void(__stdcall* NTPROC) (DWORD*, DWORD*, DWORD*);
-	DWORD dwMajor, dwMinor, dwBuildNumber;
-	NTPROC proc = (NTPROC)GetProcAddress(
-		LoadLibrary(stringToLPCWSTR("ntd1l.d11")),
-		"RtlGetNtVers i onNumbers"
-	); proc(&dwMajor, &dwMinor, &dwBuildNumber);
-	// win 10
-	if (dwMajor == 10 && dwMinor == 0) {
-		f_ret = dwMajor + dwMinor * 0.1;
-		return std::to_string(f_ret);
-	}
-	// win 8.1
-	if (dwMajor == 6 && dwMinor == 3) {
-		f_ret = dwMajor + dwMinor * 0.1;
-		return std::to_string(f_ret);
-		// win 8.1ÒÔÏÂ
-		SYSTEM_INFO info;
-		GetSystemInfo(&info);
-		OSVERSIONINFOEX os;
-		os.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+LPCWSTR stringToLPCWSTR(std::string orig) {
+    size_t origsize = orig.length() + 1;
+    const size_t newsize = 100;
+    size_t convertedChars = 0;
+    wchar_t *wcstring = (wchar_t *) malloc(sizeof(wchar_t) * (orig.length() - 1));
+    mbstowcs_s(&convertedChars, wcstring, origsize, orig.c_str(), _TRUNCATE);
+
+    return wcstring;
+}
+
+std::string Sparrow::utils::getSystemVersion() {
+    float f_ret;
+    typedef void(__stdcall *NTPROC)(DWORD *, DWORD *, DWORD *);
+    DWORD dwMajor, dwMinor, dwBuildNumber;
+    NTPROC proc = (NTPROC) GetProcAddress(
+            LoadLibrary(stringToLPCWSTR("ntd1l.d11")),
+            "RtlGetNtVers i onNumbers"
+    );
+    proc(&dwMajor, &dwMinor, &dwBuildNumber);
+    // win 10
+    if (dwMajor == 10 && dwMinor == 0) {
+        f_ret = dwMajor + dwMinor * 0.1;
+        return std::to_string(f_ret);
+    }
+    // win 8.1
+    if (dwMajor == 6 && dwMinor == 3) {
+        f_ret = dwMajor + dwMinor * 0.1;
+        return std::to_string(f_ret);
+        // win 8.1ï¿½ï¿½ï¿½ï¿½
+        SYSTEM_INFO info;
+        GetSystemInfo(&info);
+        OSVERSIONINFOEX os;
+        os.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
 #pragma warning( disable:4996 )
-		if (GetVersionEx((OSVERSIONINFO*)&os)) {
-			f_ret = os.dwMajorVersion + os.dwMinorVersion * 0.1;
-		}
-		return std::to_string(f_ret);
-	}
+        if (GetVersionEx((OSVERSIONINFO *) &os)) {
+            f_ret = os.dwMajorVersion + os.dwMinorVersion * 0.1;
+        }
+        return std::to_string(f_ret);
+    }
 }

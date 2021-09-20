@@ -1,4 +1,5 @@
 #pragma once
+
 #include <QString>
 #include <QUrl>
 #include <QDir>
@@ -7,7 +8,9 @@
 using namespace Sparrow::utils;
 
 namespace Sparrow {
-    typedef enum versionType { RELEASE, SNAPSHOT, OLD_ALPHA, OLD_BETA } versionType;
+    typedef enum versionType {
+        RELEASE, SNAPSHOT, OLD_ALPHA, OLD_BETA
+    } versionType;
 
     typedef struct minecraftVersion {
         QString version;
@@ -17,24 +20,36 @@ namespace Sparrow {
         fileInfo clientJar;
         QVector<fileInfo> libs;
         QString mainClass;
+
         minecraftVersion(void) {}
-        minecraftVersion(const QString& version, 
-            const enum versionType& type, 
-            const fileInfo& assetIndex,
-            const QString& assetVersion,
-            const fileInfo& clientJar,
-            const QVector<fileInfo>& libs,
-            const QString& mainClass);
-        bool operator<(const minecraftVersion& b);
-        bool operator<(const QString& b);
-        bool operator==(const minecraftVersion& b);
-        bool operator==(const QString& b);
-        bool operator>(const minecraftVersion& b);
-        bool operator>(const QString& b);
-        bool operator<=(const minecraftVersion& b);
-        bool operator<=(const QString& b);
-        bool operator>=(const minecraftVersion& b);
-        bool operator>=(const QString& b);
+
+        minecraftVersion(const QString &version,
+                         const enum versionType &type,
+                         const fileInfo &assetIndex,
+                         const QString &assetVersion,
+                         const fileInfo &clientJar,
+                         const QVector<fileInfo> &libs,
+                         const QString &mainClass);
+
+        bool operator<(const minecraftVersion &b);
+
+        bool operator<(const QString &b);
+
+        bool operator==(const minecraftVersion &b);
+
+        bool operator==(const QString &b);
+
+        bool operator>(const minecraftVersion &b);
+
+        bool operator>(const QString &b);
+
+        bool operator<=(const minecraftVersion &b);
+
+        bool operator<=(const QString &b);
+
+        bool operator>=(const minecraftVersion &b);
+
+        bool operator>=(const QString &b);
     } minecraftVersion;
 
     class MinecraftDirectory {
@@ -46,25 +61,29 @@ namespace Sparrow {
         QDir librariesDir;
         QDir crash_reportsDir;
         QDir assetsDir;
-        MinecraftDirectory(void){}
-        MinecraftDirectory(const QString& rootDir);
+
+        MinecraftDirectory(void) {}
+
+        MinecraftDirectory(const QString &rootDir);
     };
 
-	class Minecraft
-	{
+    class Minecraft {
     public:
         minecraftVersion version;
         MinecraftDirectory root;
         QDir path;
         QString clientJarFile;
         QString jsonFile;
-        Minecraft(void){}
+
+        Minecraft(void) {}
+
         Minecraft(
-            const minecraftVersion& version,
-            const MinecraftDirectory& root,
-            const QDir& path,
-            const QString& clientJarFile,
-            const QString& jsonFile);
-        Minecraft(const QDir& dir);
-	};
+                const minecraftVersion &version,
+                const MinecraftDirectory &root,
+                const QDir &path,
+                const QString &clientJarFile,
+                const QString &jsonFile);
+
+        Minecraft(const QDir &dir);
+    };
 }
