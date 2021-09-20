@@ -2,8 +2,9 @@
 #define SPARROWCORE_GLOBAL_H
 
 #include <QtCore/qglobal.h>
+#include "utils.h"
 
-#if defined(SPARROWCORE_LIBRARY)
+#ifdef SPARROWCORE_LIBRARY
 #  define SPARROWCORE_EXPORT Q_DECL_EXPORT
 #else
 #  define SPARROWCORE_EXPORT Q_DECL_IMPORT

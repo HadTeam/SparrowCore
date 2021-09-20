@@ -59,7 +59,7 @@ minecraftVersion jsonParser::parseMinecraftVersion(const QJsonDocument &versionI
                                               parseNativesLibrary(i.toObject()["classifiers"].toObject())));
         }
     }
-    return minecraftVersion(version, versionType, assetIndex, assetVersion, clientJar, libs, mainClass);
+    return MinecraftVersion(version, versionType, assetIndex, assetVersion, clientJar, libs, mainClass);
 }
 
 Sparrow::Minecraft Sparrow::Init::JsonParser::jsonParser::parseMinecraft(const QDir &dir) {
