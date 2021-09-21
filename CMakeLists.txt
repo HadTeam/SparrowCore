@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(Sparrow)
+project(SparrowCore)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -9,9 +9,11 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} $ENV{QT_DIR}/$ENV{QT_VERSION}/gcc_64/lib/cmake)
 
-find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Core REQUIRED)
 
-SET (SPARROW_SRC SparrowCore.h)
-ADD_LIBRARY (Sparrow SHARED ${Sparrow_SRC})
-INSTALL(TARGETS Sparrow RUNTIME DESTINATION ../SparrowCore)
-SET_TARGET_PROPERTIES(Sparrow PROPERTIES LINKER_LANGUAGE CXX)
+SET (SPARROW_SRC SparrowCore.h CommandLine.h fastDownload.h jsonParser.h Launcher.h Minecraft.h utils.h)
+ADD_LIBRARY (SparrowCore SHARED ${Sparrow_SRC})
+INSTALL(TARGETS SparrowCore RUNTIME DESTINATION .)
+SET_TARGET_PROPERTIES(
+        SparrowCore PROPERTIES LINKER_LANGUAGE CXX
+        OUTPUT_NAME "SparrowCore")
