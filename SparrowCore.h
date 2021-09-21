@@ -2,8 +2,11 @@
 #define SPARROWCORE_H
 
 #include "SparrowCore_global.h"
-#include "fastDownload.h"
 #include "jsonParser.h"
+#include "CommandLine.h"
+#include "utils.h"
+#include "Minecraft.h"
+#include "Launcher.h"
 
 class SPARROWCORE_EXPORT SparrowCore
 {

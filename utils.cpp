@@ -7,6 +7,10 @@ nativesLibraryFile::nativesLibraryFile(const libraryFile &, const nativesLibrary
     this->classifiers = e;
 }
 
+nativesLibraryFile::nativesLibraryFile(void) {
+
+}
+
 fileInfo::fileInfo(const QUrl &fileUrl, const QString &filePath, const QString &hash, const qint8 &size) : fileUrl(
         fileUrl), filePath(filePath), hash(hash), size(size) {
 
@@ -158,4 +162,8 @@ std::string Sparrow::utils::getSystemVersion() {
         }
         return std::to_string(f_ret);
     }
+}
+
+nativesLibrary::nativesLibrary(void) {
+
 }
