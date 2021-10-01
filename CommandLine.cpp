@@ -118,24 +118,46 @@ Sparrow::launch::CommandLine::CommandLine(const QString& javaPath, const QVector
 	}
 }
 
-LaunchArgument::LaunchArgument(const jvmArgument &osName, const jvmArgument &osVersion,
-                               const jvmArgument &javaLibraryPath, const jvmArgument &cp,
-                               const jvmArgument &log4JConfigurationFile, const QString &mainClass,
-                               const processArgument &username, const processArgument &version,
-                               const processArgument &gameDir, const processArgument &assetsDir,
-                               const processArgument &assetIndex, const processArgument &uuid,
-                               const processArgument &accessToken, const processArgument &userType,
-                               const processArgument &versionType, jvmArgument *additionalJvmArgument,
-                               processArgument *additionalProcessArgument) : osName(osName), osVersion(osVersion),
-                                                                             javaLibraryPath(javaLibraryPath), cp(cp),
-                                                                             log4jConfigurationFile(
-                                                                                    log4JConfigurationFile),
-                                                                             mainClass(mainClass), username(username),
-                                                                             version(version), gameDir(gameDir),
-                                                                             assetsDir(assetsDir),
-                                                                             assetIndex(assetIndex), uuid(uuid),
-                                                                             accessToken(accessToken),
-                                                                             userType(userType),
-                                                                             versionType(versionType),
-                                                                             additionalJvmArgument(additionalJvmArgument),
-                                                                             additionalProcessArgument(additionalProcessArgument) {}
+LaunchCommand::LaunchCommand(const QString &javaPath, const jvmArgument& osName, const jvmArgument& osVersion,
+	const jvmArgument& javaLibraryPath, const jvmArgument& cp,
+	const jvmArgument& log4JConfigurationFile, const QString& mainClass,
+	const processArgument& username, const processArgument& version,
+	const processArgument& gameDir, const processArgument& assetsDir,
+	const processArgument& assetIndex, const processArgument& uuid,
+	const processArgument& accessToken, const processArgument& userType,
+	const processArgument& versionType, const QVector<jvmArgument> &additionalJvmArgument,
+	const QVector<processArgument> &additionalProcessArgument) : javaPath(javaPath), mainClass(mainClass) {
+	this->jvmArguments.push_back(osName);
+	this->jvmArguments.push_back(osVersion);
+	this->jvmArguments.push_back(javaLibraryPath);
+	this->jvmArguments.push_back(cp);
+	this->jvmArguments.push_back(log4JConfigurationFile);
+	this->processArguments.push_back(username);
+	this->processArguments.push_back(version);
+	this->processArguments.push_back(gameDir);
+	this->processArguments.push_back(assetsDir);
+	this->processArguments.push_back(assetIndex);
+	this->processArguments.push_back(uuid);
+	this->processArguments.push_back(accessToken);
+	this->processArguments.push_back(userType);
+	this->processArguments.push_back(versionType);
+	for (jvmArgument i : additionalJvmArgument) {
+		this->jvmArguments.push_back(i);
+	}
+	for (processArgument i : additionalProcessArgument) {
+		this->processArguments.push_back(i);
+	}
+}
+
+QString Sparrow::launch::LaunchCommand::getArgumentString()
+{
+	QString result = javaPath + " ";
+	for (jvmArgument i : jvmArguments) {
+		result += i.toString() + " ";
+	}
+	result += mainClass + " ";
+	for (processArgument i : processArguments) {
+		result += i.toString() + " ";
+	}
+	return result;;
+}

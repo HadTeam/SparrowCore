@@ -34,7 +34,7 @@ std::string Sparrow::utils::getSystemName() {
     std::string vname;
     //���ж��Ƿ�Ϊwin8.1��win10
     typedef void(__stdcall *NTPROC)(DWORD *, DWORD *, DWORD *);
-    HINSTANCE hinst = LoadLibrary("ntdll.dll");
+    HINSTANCE hinst = LoadLibrary(ConvertCharToLPWSTR("ntdll.dll"));
     DWORD dwMajor, dwMinor, dwBuildNumber;
     NTPROC proc = (NTPROC) GetProcAddress(hinst, "RtlGetNtVersionNumbers");
     proc(&dwMajor, &dwMinor, &dwBuildNumber);
@@ -138,7 +138,7 @@ std::string Sparrow::utils::getSystemVersion() {
     typedef void(__stdcall *NTPROC)(DWORD *, DWORD *, DWORD *);
     DWORD dwMajor, dwMinor, dwBuildNumber;
     NTPROC proc = (NTPROC) GetProcAddress(
-            LoadLibrary("ntd1l.d11"),
+            LoadLibrary(ConvertCharToLPWSTR("ntd1l.d11")),
             "RtlGetNtVers i onNumbers"
     );
     proc(&dwMajor, &dwMinor, &dwBuildNumber);

@@ -84,13 +84,12 @@ namespace Sparrow::launch {
         );
     };
 
-    class __declspec(dllexport) LaunchArgument {
-        jvmArgument osName;
+    class __declspec(dllexport) LaunchCommand {
+        /*jvmArgument osName;
         jvmArgument osVersion;
         jvmArgument javaLibraryPath;
         jvmArgument cp;
         jvmArgument log4jConfigurationFile;
-        QString mainClass;
         processArgument username;
         processArgument version;
         processArgument gameDir;
@@ -99,16 +98,19 @@ namespace Sparrow::launch {
         processArgument uuid;
         processArgument accessToken;
         processArgument userType;
-        processArgument versionType;
-        jvmArgument *additionalJvmArgument;
-        processArgument *additionalProcessArgument;
+        processArgument versionType;*/
+        QString javaPath;
+        QString mainClass;
+        QVector<jvmArgument> jvmArguments;
+        QVector<processArgument> processArguments;
     public:
-        LaunchArgument(const jvmArgument &osName, const jvmArgument &osVersion, const jvmArgument &javaLibraryPath,
+        LaunchCommand(const QString &javaPath, const jvmArgument &osName, const jvmArgument &osVersion, const jvmArgument &javaLibraryPath,
                        const jvmArgument &cp, const jvmArgument &log4JConfigurationFile, const QString &mainClass,
                        const processArgument &username, const processArgument &version, const processArgument &gameDir,
                        const processArgument &assetsDir, const processArgument &assetIndex, const processArgument &uuid,
                        const processArgument &accessToken, const processArgument &userType,
-                       const processArgument &versionType, jvmArgument *additionalJvmArgument,
-                       processArgument *additionalProcessArgument);
+                       const processArgument &versionType, const QVector<jvmArgument> &additionalJvmArgument,
+                       const QVector<processArgument> &additionalProcessArgument);
+        QString getArgumentString();
     };
 }

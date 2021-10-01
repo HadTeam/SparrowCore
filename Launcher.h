@@ -6,6 +6,6 @@
 namespace Sparrow::launch {
 	class __declspec(dllexport) Launcher
 	{
-		QProcess launch(LaunchArgument arg);
+		QProcess launch(LaunchCommand arg);
 	};
 }
